@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <string>
+#pragma execution_character_set("utf-8")
 
 enum month {
 	Jan = 1,
@@ -17,6 +18,7 @@ enum month {
 	Dec
 };
 int main() {
+	system("chcp 1251")
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	int number{};
