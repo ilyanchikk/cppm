@@ -1,7 +1,6 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <Windows.h>
 #include <string>
-#pragma execution_character_set("utf-8")
 
 enum month {
 	Jan = 1,
@@ -23,31 +22,31 @@ int main() {
 	SetConsoleOutputCP(1251);
 	int number{};
 	do {
-		std::cout << "Ââåäèòå íîìåð ìåñÿöà,(äëÿ âûõîäà ââåäèòå 0) : ";
+		std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ Ð¼ÐµÑÑÑ†Ð°,(Ð´Ð»Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð° Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ 0) : ";
 		std::cin >> number;
 		std::cout << std::endl;
 		if (number < 0 || number > 12) {
-			std::cout << "Ââåäåí íåêîððåòíûé ìåñÿö." << std::endl;
+			std::cout << "Ð’Ð²ÐµÐ´ÐµÐ½ Ð½ÐµÐºÐ¾Ñ€Ñ€ÐµÑ‚Ð½Ñ‹Ð¹ Ð¼ÐµÑÑÑ†." << std::endl;
 		}
 		else if (number == 0) {
-			std::cout << "Äî ñâèäàíèÿ." << std::endl;
+			std::cout << "Ð”Ð¾ ÑÐ²Ð¸Ð´Ð°Ð½Ð¸Ñ." << std::endl;
 			break;
 		}
 		else {
 			month numb = static_cast<month>(number);
 			switch (numb) {
-			case Jan: std::cout << "ßíâàðü" << std::endl; break;
-				case Feb: std::cout << "Ôåâðàëü" << std::endl; break;
-				case Mar: std::cout << "Ìàðò" << std::endl; break;
-				case Apr: std::cout << "Àïðåëü" << std::endl; break;
-				case May: std::cout << "Ìàé" << std::endl; break;
-				case June: std::cout << "Èþíü" << std::endl; break;
-				case Juli: std::cout << "Èþëü" << std::endl; break;
-				case Aug: std::cout << "Àâãóñò" << std::endl; break;
-				case Sep: std::cout << "Ñåíòÿáðü" << std::endl; break;
-				case Okt: std::cout << "Îêòÿáðü" << std::endl; break;
-				case Nov: std::cout << "Íîÿáðü" << std::endl; break;
-				case Dec: std::cout << "Äåêàáðü" << std::endl; break;
+			case Jan: std::cout << "Ð¯Ð½Ð²Ð°Ñ€ÑŒ" << std::endl; break;
+				case Feb: std::cout << "Ð¤ÐµÐ²Ñ€Ð°Ð»ÑŒ" << std::endl; break;
+				case Mar: std::cout << "ÐœÐ°Ñ€Ñ‚" << std::endl; break;
+				case Apr: std::cout << "ÐÐ¿Ñ€ÐµÐ»ÑŒ" << std::endl; break;
+				case May: std::cout << "ÐœÐ°Ð¹" << std::endl; break;
+				case June: std::cout << "Ð˜ÑŽÐ½ÑŒ" << std::endl; break;
+				case Juli: std::cout << "Ð˜ÑŽÐ»ÑŒ" << std::endl; break;
+				case Aug: std::cout << "ÐÐ²Ð³ÑƒÑÑ‚" << std::endl; break;
+				case Sep: std::cout << "Ð¡ÐµÐ½Ñ‚ÑÐ±Ñ€ÑŒ" << std::endl; break;
+				case Okt: std::cout << "ÐžÐºÑ‚ÑÐ±Ñ€ÑŒ" << std::endl; break;
+				case Nov: std::cout << "ÐÐ¾ÑÐ±Ñ€ÑŒ" << std::endl; break;
+				case Dec: std::cout << "Ð”ÐµÐºÐ°Ð±Ñ€ÑŒ" << std::endl; break;
 				}
 		}
 	}
