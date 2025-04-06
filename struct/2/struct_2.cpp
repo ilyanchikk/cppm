@@ -1,6 +1,7 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <Windows.h>
 #include <string>
+
 
 struct account {
 	int number;
@@ -13,21 +14,21 @@ int main() {
 	SetConsoleOutputCP(1251);
 	account People;
 	account* p_acc = &People;
-	std::cout << "Ââåäèòå íîìåð ñ÷åòà: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÑÑ‡ÐµÑ‚Ð°: ";
 	std::cin >> People.number;
 	std::cout << std::endl;
-	std::cout << "Ââåäèòå èìÿ âëàäåëüöà: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ Ð²Ð»Ð°Ð´ÐµÐ»ÑŒÑ†Ð°: ";
 	std::cin >> People.name;
 	std::cout << std::endl;
-	std::cout << "Ââåäèòå áàëàíñ: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð±Ð°Ð»Ð°Ð½Ñ: ";
 	std::cin >> People.bank;
 	std::cout << std::endl;
 	change_balance(p_acc);
-	std::cout << "Íîìåð ñ÷åòà: " << People.number << ", " << "Èìÿ Âëàäåëüöà: " << People.name << ", " << "Áàëàíñ ñ÷åòà: " << People.bank << std::endl;
+	std::cout << "ÐÐ¾Ð¼ÐµÑ€ ÑÑ‡ÐµÑ‚Ð°: " << People.number << ", " << "Ð˜Ð¼Ñ Ð’Ð»Ð°Ð´ÐµÐ»ÑŒÑ†Ð°: " << People.name << ", " << "Ð‘Ð°Ð»Ð°Ð½Ñ ÑÑ‡ÐµÑ‚Ð°: " << People.bank << std::endl;
 	return 0;
 }
 
 void change_balance(account* p_acc) {
-	std::cout << "Ââåäèòå íîâûé áàëàíñ: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ñ‹Ð¹ Ð±Ð°Ð»Ð°Ð½Ñ: ";
 	std::cin >> p_acc->bank;
 }
