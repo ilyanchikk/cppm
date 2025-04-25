@@ -1,10 +1,8 @@
-ï»¿
+
 #include <iostream>
 #include <Windows.h>
 #include <string>
 #include <fstream>
-
-void input_addres(std::string* arr);
 
 class Addres {
 private:
@@ -19,40 +17,42 @@ public:
 		this->house = house;
 		this->flat = flat;
 	}
-	std::string get_output_address(std::ifstream file) {
-		file >> city;
-		file >> street;
-		file >> house;
-		file >> flat;
+	std::string get_output_address() {
+		std::string s;
+		return s += city + ' ' + street + ' ' + std::to_string(house) + ' ' + std::to_string(flat) + '\n';
 	}
 };
 
 int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	std::ifstream file ("in.txt");
+	std::ifstream in_file("in.txt");
 	int size{};
 	std::string city{};
 	std::string street{};
 	int house{};
 	int flat{};
-	if (file.is_open()) {
-		file >> size;
-		std::string* arr = new std::string[size]{};
+	if (in_file.is_open()) {
+		in_file >> size;
+		Addres** add_ptr = new Addres* [size];
 		for (int i = 0; i < size; ++i) {
-			file >> city;
-			file >> street;
-			file >> house;
-			file >> flat;
-			arr[i] = Addres(city, street, house, flat);
-			
+			in_file >> city;
+			in_file >> street;
+			in_file >> house;
+			in_file >> flat;
+			add_ptr[i] = new Addres(city, street, house, flat);
 		}
-
-		delete[] arr;
+		in_file.close();
+		std::ofstream out_file("out.txt");
+		out_file << size;
+		out_file << '\n';
+		for (int i = size - 1; i >= 0; --i) {
+			out_file << add_ptr[i]->get_output_address();
+		}
+		out_file.close();
+		delete[] add_ptr;
+		std::cout << "Èíôîðìàöèÿ âûâåäåíà â out.txt";
 	}
-	else std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ñ„Ð°Ð¹Ð»Ð°!.";
-
-}
-void input_addres(std::string* arr) {
+	else std::cout << "Îøèáêà îòêðûòèÿ âõîäíîãî ôàéëà!.";
 
 }
