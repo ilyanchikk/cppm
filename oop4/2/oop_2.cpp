@@ -63,8 +63,8 @@ int main() {
 		}
 		out_file.close();
 		delete[] add_ptr;
-		std::cout << "Информация выведена в out.txt";
+		std::cout << "information out in out.txt";
 	}
-	else std::cout << "Ошибка открытия входного файла!.";
+	else std::cout << "information out in out.txt";
 
 } 
