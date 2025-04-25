@@ -21,7 +21,6 @@ public:
 		std::string s;
 		return s += city + ' ' + street + ' ' + std::to_string(house) + ' ' + std::to_string(flat) + '\n';
 	}
-	std::string get_city() { return city; }
 };
 
 int main() {
@@ -43,22 +42,11 @@ int main() {
 			in_file >> flat;
 			add_ptr[i] = new Addres(city, street, house, flat);
 		}
-		Addres* temp = new Addres("null", "null", 0, 0);
-		for (int j = 0; j < size; ++j) {
-			for (int i = j; i < size - 1; ++i) {
-				if (add_ptr[i]->get_city() > add_ptr[i + 1]->get_city())
-				{
-					temp = add_ptr[i];
-					add_ptr[i] = add_ptr[i + 1];
-					add_ptr[i + 1] = temp;
-				}
-			}
-		}
 		in_file.close();
 		std::ofstream out_file("out.txt");
 		out_file << size;
 		out_file << '\n';
-		for (int i = 0; i < size; ++i) {
+		for (int i = size - 1; i >= 0; --i) {
 			out_file << add_ptr[i]->get_output_address();
 		}
 		out_file.close();
@@ -67,4 +55,4 @@ int main() {
 	}
 	else std::cout << "Ошибка открытия входного файла!.";
 
-} 
+}
