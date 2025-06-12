@@ -4,10 +4,12 @@
 
 class Shape {
 protected:
-	std::string type{ "Фигура" };
+	std::string type{};
 	int sides;
 public:
-	Shape(int sides) : sides(sides) {}
+	Shape(int sides) : sides(sides) {
+		type = "Фигура";
+	}
 	virtual void print_info() {
 		std::cout << type << std::endl;
 		logic();
@@ -28,14 +30,11 @@ public:
 
 class Triangle : public Shape {
 protected:
-	std::string type{ "Треугольник" };
 	int a, b, c, A, B, C{};
 public:
 	Triangle(int a, int b, int c, int A, int B, int C)
 		: Shape(3), a(a), b(b), c(c), A(A), B(B), C(C) {
-	}
-	Triangle(int a, int b, int c, int A, int B, int C, std::string type)
-		: Shape(3), a(a), b(b), c(c), A(A), B(B), C(C), type(type) {
+		type = "Треугольник";
 	}
 	bool chek() override {
 		if (sides == 3 && A + B + C == 180) { return true; }
@@ -60,14 +59,11 @@ public:
 
 class Quadangle : public Shape {
 protected:
-	std::string type{ "Четырехугольник" };
 	int a, b, c, d, A, B, C, D{};
 public:
 	Quadangle(int a, int b, int c, int d, int A, int B, int C, int D)
 		: Shape(4), a(a), b(b), c(c), d(d), A(A), B(B), C(C), D(D) {
-	}
-	Quadangle(int a, int b, int c, int d, int A, int B, int C, int D, std::string type)
-		: Shape(4), a(a), b(b), c(c), d(d), A(A), B(B), C(C), D(D), type(type) {
+		type = "Четырехугольник";
 	}
 
 	bool chek() override {
@@ -93,7 +89,8 @@ public:
 class PRTriangle : public Triangle {
 public:
 	PRTriangle(int a, int b, int A, int B, int C)
-		: Triangle(a, b, 90, A, B, C, "Прямоугольный треугольник") {
+		: Triangle(a, b, 90, A, B, C) {
+		type = "Прямоугольный треугольник";
 	}
 	bool chek() override {
 		if (C == 90) { return true; }
@@ -104,7 +101,8 @@ public:
 class RBTriangle : public Triangle {
 public:
 	RBTriangle(int a, int b, int A, int B)
-		: Triangle(a, b, a, A, B, A, "Равнобедренный треугольник") {
+		: Triangle(a, b, a, A, B, A) {
+		type = "Равнобедренный треугольник";
 	}
 	bool chek() override {
 		if (a == c && A == C) { return true; }
@@ -115,7 +113,8 @@ public:
 class RSTTriangle : public Triangle {
 public:
 	RSTTriangle(int a)
-		: Triangle(a, a, a, 60, 60, 60, "Равносторонний треугольник") {
+		: Triangle(a, a, a, 60, 60, 60) {
+		type = "Равносторонний треугольник";
 	}
 	bool chek() override {
 		if (a == b && b == c && A == 60 && B == 60 && C == 60) { return true; }
@@ -126,7 +125,8 @@ public:
 class Rctngl : public Quadangle {
 public:
 	Rctngl(int a, int b)
-		: Quadangle(a, b, a, b, 90, 90, 90, 90, "Прямоугольник") {
+		: Quadangle(a, b, a, b, 90, 90, 90, 90) {
+		type = "Прямоугольник";
 	}
 	bool chek() override {
 		if (a == c && b == d && A == 90 && B == 90 && C == 90 && D == 90) { return true; }
@@ -137,7 +137,8 @@ public:
 class Square : public Quadangle {
 public:
 	Square(int a)
-		: Quadangle(a, a, a, a, 90, 90, 90, 90, "Квадрат") {
+		: Quadangle(a, a, a, a, 90, 90, 90, 90) {
+		type = "Квадрат";
 	}
 	bool chek() override {
 		if (a == b && b == c && c == d && A == 90 && B == 90 && C == 90 && D == 90) { return true; }
@@ -148,7 +149,8 @@ public:
 class Parallelogram : public Quadangle {
 public:
 	Parallelogram(int a, int b, int A, int B)
-		: Quadangle(a, b, a, b, A, B, A, B, "Параллелограмм") {
+		: Quadangle(a, b, a, b, A, B, A, B) {
+		type = "Параллелограмм";
 	}
 	bool chek() override {
 		if (a == c && b == d && A == C && B == D) { return true; }
@@ -159,7 +161,8 @@ public:
 class Romb : public Quadangle {
 public:
 	Romb(int a, int A, int B)
-		: Quadangle(a, a, a, a, A, B, A, B, "Ромб") {
+		: Quadangle(a, a, a, a, A, B, A, B) {
+		type = "Ромб";
 	}
 	bool chek() override {
 		if (a == b && b == c && c == d && A == C && B == D) { return true; }
