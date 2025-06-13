@@ -93,7 +93,7 @@ public:
 		type = "Прямоугольный треугольник";
 	}
 	bool chek() override {
-		if (C == 90) { return true; }
+		if (Triangle::chek() && C == 90) { return true; }
 		else return false;
 	}
 };
@@ -105,7 +105,7 @@ public:
 		type = "Равнобедренный треугольник";
 	}
 	bool chek() override {
-		if (a == c && A == C) { return true; }
+		if (Triangle::chek() && a == c && A == C) { return true; }
 		else return false;
 	}
 };
@@ -117,7 +117,7 @@ public:
 		type = "Равносторонний треугольник";
 	}
 	bool chek() override {
-		if (a == b && b == c && A == 60 && B == 60 && C == 60) { return true; }
+		if (Triangle::chek() && a == b && b == c && A == 60 && B == 60 && C == 60) { return true; }
 		else return false;
 	}
 };
@@ -129,7 +129,7 @@ public:
 		type = "Прямоугольник";
 	}
 	bool chek() override {
-		if (a == c && b == d && A == 90 && B == 90 && C == 90 && D == 90) { return true; }
+		if (Quadangle::chek() && a == c && b == d && A == 90 && B == 90 && C == 90 && D == 90) { return true; }
 		else return false;
 	}
 };
@@ -141,7 +141,7 @@ public:
 		type = "Квадрат";
 	}
 	bool chek() override {
-		if (a == b && b == c && c == d && A == 90 && B == 90 && C == 90 && D == 90) { return true; }
+		if (Quadangle::chek() && a == b && b == c && c == d && A == 90 && B == 90 && C == 90 && D == 90) { return true; }
 		else return false;
 	}
 };
@@ -153,7 +153,7 @@ public:
 		type = "Параллелограмм";
 	}
 	bool chek() override {
-		if (a == c && b == d && A == C && B == D) { return true; }
+		if (Quadangle::chek() && a == c && b == d && A == C && B == D) { return true; }
 		else return false;
 	}
 };
@@ -165,7 +165,7 @@ public:
 		type = "Ромб";
 	}
 	bool chek() override {
-		if (a == b && b == c && c == d && A == C && B == D) { return true; }
+		if (Quadangle::chek() && a == b && b == c && c == d && A == C && B == D) { return true; }
 		else return false;
 	}
 };
@@ -182,7 +182,7 @@ int main() {
 	print_info(&shape);
 	Triangle trg(10, 20, 30, 40, 50, 60);
 	print_info(&trg);
-	PRTriangle prtrg(10, 20, 30, 50, 90);
+	PRTriangle prtrg(10, 20, 40, 50, 90);
 	print_info(&prtrg);
 	RBTriangle rbtrg(10, 20, 50, 90);
 	print_info(&rbtrg);
