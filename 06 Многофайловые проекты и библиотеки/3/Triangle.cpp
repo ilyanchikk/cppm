@@ -4,9 +4,7 @@
 
 	Triangle::Triangle(int a, int b, int c, int A, int B, int C)
 		: Shape(3), a(a), b(b), c(c), A(A), B(B), C(C) {
-	}
-	Triangle::Triangle(int a, int b, int c, int A, int B, int C, std::string type)
-		: Shape(3), a(a), b(b), c(c), A(A), B(B), C(C), type(type) {
+		type = "Треугольник";
 	}
 	void Triangle::print_info() {
 		std::cout << type << std::endl;

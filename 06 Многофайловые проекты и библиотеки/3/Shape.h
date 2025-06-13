@@ -4,7 +4,7 @@
 
 class Shape {
 protected:
-	std::string type{ "Фигура" };
+	std::string type{};
 	int sides{};
 public:
 	Shape(int sides);

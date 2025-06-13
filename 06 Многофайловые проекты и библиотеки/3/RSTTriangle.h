@@ -4,7 +4,8 @@
 class RSTTriangle : public Triangle {
 public:
 	RSTTriangle(int a)
-		: Triangle(a, a, a, 60, 60, 60, "Равносторонний треугольник") {
+		: Triangle(a, a, a, 60, 60, 60) {
+		type = "Равносторонний треугольник";
 	}
 };
 

@@ -4,7 +4,8 @@
 class Square : public Quadangle {
 public:
 	Square(int a)
-		: Quadangle(a, a, a, a, 90, 90, 90, 90, "Квадрат") {
+		: Quadangle(a, a, a, a, 90, 90, 90, 90) {
+		type = "Квадрат";
 	}
 };
 
