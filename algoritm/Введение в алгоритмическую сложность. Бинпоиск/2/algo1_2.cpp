@@ -14,6 +14,7 @@ int main() {
 	std::cin >> num;
 	std::cout << std::endl;
 	std::cout <<"Количество элементов больше " << num << " : " << sort(arr_ptr, num, left, mid, right, size);
+	delete [] arr_ptr;
 	return EXIT_SUCCESS;
 }
 
