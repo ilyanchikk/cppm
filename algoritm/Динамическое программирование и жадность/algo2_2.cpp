@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <Windows.h>
 
 void calc(int* arr_ptr, int in);
@@ -7,7 +7,7 @@ int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	int in{};
-	std::cout << "‚âåäèòå êîëè÷åñòâî ÷èñåë ”èáîíà÷÷è: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ñ‡Ð¸ÑÐµÐ» Ð¤Ð¸Ð±Ð¾Ð½Ð°Ñ‡Ñ‡Ð¸: ";
 	std::cin >> in;
 	int* arr_ptr = new int [in] {0,1};
 	calc( arr_ptr, in);

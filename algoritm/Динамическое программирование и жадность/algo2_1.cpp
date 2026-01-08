@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <Windows.h>
 
 void calc(int in, long long a, long long b, long long c, int count);
@@ -10,7 +10,7 @@ int main() {
 	long long b{ 0 };
 	long long c{ 1 };
 	int count{ 0 };
-	std::cout << "‚âåäèòå êîëè÷åñòâî ÷èñåë ”èáîíà÷÷è: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ñ‡Ð¸ÑÐµÐ» Ð¤Ð¸Ð±Ð¾Ð½Ð°Ñ‡Ñ‡Ð¸: ";
 	std::cin >> in;
 	std::cout << a << std::endl;
 	std::cout << c << std::endl;
