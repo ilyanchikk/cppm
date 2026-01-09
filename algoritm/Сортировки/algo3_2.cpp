@@ -1,4 +1,4 @@
-#include <Windows.h>
+ï»¿#include <Windows.h>
 #include <vector>
 #include <iostream>
 
@@ -14,11 +14,11 @@ int main() {
     int* data = new int [size] {24, 66, 20, 79, 30, 16, 19, 62, 94, 59, 0, 7, 59, 90, 84, 60, 95, 62,};
  
 
-    std::cout << "ˆñõîäíûé ìàññèâ ";
+    std::cout << "Ð˜ÑÑ…Ð¾Ð´Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð² ";
     printArray(data, size);
     quick_sort(data,begin, size);
 
-    std::cout << "Žòêîððåêòèðîâàííûé ìàññèâ: ";
+    std::cout << "ÐžÑ‚ÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²: ";
     printArray(data, size);
     return EXIT_SUCCESS;
 }
