@@ -1,4 +1,4 @@
-#include <Windows.h>
+ï»¿#include <Windows.h>
 #include <iostream>
 
 void count_sort(int* data, int* tmp, const int begin, const int end);
@@ -14,15 +14,15 @@ int main() {
     int* data = new int [size] {19, 14, 22, 22, 17, 22, 13, 21, 20, 24, 18, 10, 17, 16, 17, 20, 22, 11, 20, 16, 14, 13, 10, 22, 18, 14, 16, 24, 19, 17 };
     int* tmp = new int [size] {};
 
-    std::cout << "Èñõîäíûé ìàññèâ: ";
+    std::cout << "Ð˜ÑÑ…Ð¾Ð´Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð² ";
     printArray(data, size);
 
     count_sort(data,tmp, begin,end);
 
-    std::cout << "Âðåìåííûé ìàññèâ: ";
+    std::cout << "Ð’Ñ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²: ";
     printArray(tmp, size);
 
-    std::cout << "Îòñîðòèðîâàííûé ìàññèâ: ";
+    std::cout << "ÐžÑ‚ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²: ";
     printArray(data, size);
     delete[] data;
     delete[] tmp;

@@ -1,4 +1,4 @@
-#include <Windows.h>
+ï»¿#include <Windows.h>
 #include <vector>
 #include <iostream>
 
@@ -11,12 +11,12 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     std::vector<int> data = { 88, 91, 87, 59, 53, 49, 29, 16, 4 ,27, 28, 89, 2, 25, 74 };
-    std::cout << "Èñõîäíûé ìàññèâ: ";
+    std::cout << "Ð˜ÑÑ…Ð¾Ð´Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²: ";
     printArray(data);
 
     mergeSort(data, 0, data.size() - 1);
 
-    std::cout << "Îòñîðòèðîâàííûé ìàññèâ: ";
+    std::cout << "ÐžÑ‚ÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²: ";
     printArray(data);
     return EXIT_SUCCESS;
 }

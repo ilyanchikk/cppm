@@ -14,11 +14,11 @@ int main() {
     int* data = new int [size] {24, 66, 20, 79, 30, 16, 19, 62, 94, 59, 0, 7, 59, 90, 84, 60, 95, 62,};
  
 
-    std::cout << "Исходный массив: ";
+    std::cout << "€сходный массив ";
     printArray(data, size);
     quick_sort(data,begin, size);
 
-    std::cout << "Отсортированный массив: ";
+    std::cout << "Ћткорректированный массив: ";
     printArray(data, size);
     return EXIT_SUCCESS;
 }
