@@ -8,10 +8,20 @@ private:
     int number{};
     int count{ 0 };
 public: 
-    smartArray(int asize) { data = new int[asize]; size = asize; }
-    int get_element(int index) { if (index<0 || index > size) return 0; else return data[index]; }
+    smartArray(int asize) { 
+        data = new int[asize];
+        size = asize; 
+    }
+    int get_element(int index) { 
+        if (index < 0 ||
+            index >= size) {
+            throw;
+        }
+        else return data[index]; 
+    }
     void add_element(int anumber) { 
-        if (count<0 || count > size - 1) {
+        if (count<0 || 
+            count > size - 1) {
             std::cout << "Задан неверный или отсутствующий индекс." << std::endl;
             throw;
         }
@@ -21,7 +31,9 @@ public:
             count++;
         }
     }
-        ~smartArray() { delete[] data; }
+        ~smartArray() { 
+            delete[] data;
+        }
 };
 int main() {
     SetConsoleCP(1251);
