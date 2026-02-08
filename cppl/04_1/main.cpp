@@ -1,7 +1,10 @@
 #include <iostream>
 #include <catch2/catch_test_macros.hpp>
 #include <cstdint>
+TEST_CASE("Factorials are computed", "[Empty]") {
+    REQUIRE(Empty() == true);
 
+}
 struct ListNode
 {
 public:
@@ -25,7 +28,7 @@ public:
     List()
         : m_head(new ListNode(static_cast<int>(0))), m_size(0),
         m_tail(new ListNode(0, m_head))
-    {       
+    {
     }
 
     virtual ~List()
@@ -36,6 +39,7 @@ public:
     }
 
     bool Empty() { return m_size == 0; }
+
 
     unsigned long Size() { return m_size; }
 
@@ -58,9 +62,6 @@ public:
         int ret = node->value;
         delete node;
         return ret;
-    }
-    TEST_CASE("Factorials are computed", "[factorial]") {
-        REQUIRE(PushFront(12) == 123);
     }
 
     int PopBack()
@@ -97,3 +98,9 @@ private:
     ListNode* m_tail;
     unsigned long m_size;
 };
+
+int main() {
+    List list();
+  
+    return 0;
+}
