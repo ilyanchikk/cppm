@@ -22,7 +22,7 @@ public:
     }
 private:
     std::vector<T> data;
-    T count{0};
+    int count{0};
     T sum{0};
 };
 template<class T>
