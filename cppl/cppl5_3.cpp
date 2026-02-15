@@ -3,36 +3,27 @@
 #include <vector>
 
 template<class T>
-class Sum {
+class SumCount {
 public:
-    Sum(const std::vector<T>& vect) : data(vect) {}
-    T operator()() const {
-        T tmp{0};
+    SumCount(const std::vector<T>& vect) : data(vect) {}
+    void operator()()  {
         for (auto var : data) {
             if (var % 3 == 0) {
-                tmp += var;
-            }
-        }
-        return tmp;
-   }
-private:
-    std::vector<T> data;
-};
-template<class T>
-class Count {
-public:
-    Count(const std::vector<T>& vect) : data(vect) {}
-    T operator()() const {
-        T count{ 0 };
-        for (auto var : data) {
-            if (var % 3 == 0) {
+                sum += var;
                 count++;
             }
         }
-        return count;
+    }
+    void get_sum() {
+        std::cout <<"[OUT] get_sum() = " << sum << std::endl;
+    }
+    void get_count() {
+        std::cout << "[OUT] get_count() = " << count << std::endl;
     }
 private:
     std::vector<T> data;
+    T count{0};
+    T sum{0};
 };
 template<class T>
 void print_vect(const std::vector<T>& vect);
@@ -42,13 +33,11 @@ int main() {
     SetConsoleOutputCP(1251);
     std::vector<int> vect = { 4,1,3,6,25,54};
     print_vect(vect);
-    
-    Sum<int> get_sum(vect);
-    std::cout << "[OUT] " << "get_sum() = " << get_sum() << std::endl;
+    SumCount<int> sumcount(vect);
+    sumcount();
+    sumcount.get_count();
+    sumcount.get_sum();
 
-
-    Count<int> get_count(vect);
-    std::cout << "[OUT] " << "get_count() = " << get_count() << std::endl;
     return EXIT_SUCCESS;
 }
 
@@ -60,3 +49,4 @@ void print_vect(const std::vector<T>& vect) {
     }
     std::cout << std::endl;
 }
+
