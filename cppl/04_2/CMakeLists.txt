@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.0)
-project(04_1)
+project(04_2)
 #добавляем поддиректорию, в которой будет catch2
 add_subdirectory(catch2)
 #добавляем цель - приложение, у которого исходник с единственным приложением
