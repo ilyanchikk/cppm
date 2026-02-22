@@ -1,6 +1,7 @@
 #include <iostream>
 #include <catch2/catch_test_macros.hpp>
-#include "main.cpp"
+#include "list.h"
+
 
 TEST_CASE("Test List Class" "[List]") {
 	SECTION("test PushBack") {
@@ -21,11 +22,11 @@ TEST_CASE("Test List Class" "[List]") {
 	}
 	SECTION("test Pop_Front on empty list") {
 		List list1;
-		CHECK(list1.PopFront() == 1);
+		REQUIRE_THROWS(list1.PopFront());
 	}
 	SECTION("test Pop_Back on empty list") {
 		List list1;
-		CHECK(list1.PopBack() == 1);
+		REQUIRE_THROWS(list1.PopBack());
 	}
 	SECTION("all test") {
 		List list1;
