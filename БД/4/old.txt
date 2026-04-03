@@ -1,0 +1,100 @@
+#include <iostream>
+#include <Windows.h>
+#include <string>
+#include <pqxx/pqxx>
+
+class db_manager {
+private:
+	pqxx::connection conn;
+public:
+	db_manager(const std::string& connection_string) : conn(connection_string) { // created bd 
+		conn.prepare("insert_users", "INSERT INTO users(f_name,s_name,email) VALUES($1,$2,$3)");
+		conn.prepare("insert_phone", "INSERT INTO phone(id_user,phone) VALUES($1,$2)");
+		std::cout << "BD created" << std::endl;
+	}
+	int get_id_client(std::string f_name, std::string s_name) { //получаем айди клиента
+		try {
+			pqxx::work tx(conn);
+			return  tx.query_value<int>("SELECT id FROM users WHERE f_name = '"+f_name+"' AND s_name = '"+s_name+"'");
+		}
+		catch (const std::exception& e) {
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	void create_table() { //создаем таблицы
+		try {
+			pqxx::work tx(conn);
+			tx.exec(
+				"CREATE TABLE IF NOT EXISTS users (" 
+				"id SERIAL PRIMARY KEY,"
+				"f_name VARCHAR(30) NOT NULL,"
+				"s_name VARCHAR(30) NOT NULL,"
+				"email VARCHAR(30) NOT NULL);"
+			);
+
+			std::cout << "table users created or created earlier " << std::endl;
+
+			tx.exec(
+				"CREATE TABLE IF NOT EXISTS phone("  
+				"id_user INTEGER REFERENCES users(id),"
+				"phone VARCHAR(30));"
+			);
+			std::cout << "table phone created or created earlier" << std::endl;
+			tx.commit();
+		}
+		catch (const std::exception& e) {
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	void add_client(std::string f_name, std::string s_name, std::string email) { //добавляем клиентов
+		try {
+			pqxx::work tx(conn);
+			tx.exec_prepared("insert_users", f_name, s_name, email);
+			tx.commit();
+			std::cout << "client " << f_name << " " << s_name << " add in DB " << std::endl;
+		}
+		catch (const std::exception& e) {
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	void add_phone_client(std::string f_name, std::string s_name, std::string number) { //добавляем телефон клиента
+		try {
+			pqxx::work tx(conn);
+			tx.exec_prepared("insert_phone", get_id_client(f_name, s_name), number);
+			tx.commit();
+			std::cout << "client " << f_name << " " << s_name << " with id= " << get_id_client(f_name, s_name) << " add phone " << number << " in db. " << std::endl; //get_id_client(f_name, s_name)
+		}
+		catch (const std::exception& e) {
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	void update_client() {// 
+
+	}
+	void delete_phone() {//
+
+	}
+	void delete_client() {//
+
+	}
+	void find_client() {//
+
+	}
+};
+
+int main() {
+	SetConsoleCP(CP_UTF8);
+	SetConsoleOutputCP(CP_UTF8);
+	//SetConsoleCP(1251);
+	//SetConsoleOutputCP(1251);
+	//const std::string connection_string( "host=localhost port=5432 dbname=test user=postgres password=admin" );
+	 pqxx::connection conn ("host=localhost port=5432 dbname=test2 user=postgres password=admin");
+	//db_manager db(connection_string);
+	//db.create_table();
+	//db.add_client("Ilya", "Polot", "123@mail.ru");
+	//db.add_client("Vasya", "Molot", "456@mail.ru");
+	//db.add_phone_client("Ilya", "Polot", 89991233322);
+
+	return 0;
+	
+}

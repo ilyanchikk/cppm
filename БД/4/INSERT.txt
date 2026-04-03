@@ -1,0 +1,5 @@
+INSERT INTO users (f_name,s_name,email)
+VALUES ('f_name', 's_name', 'email');
+
+INSERT INTO phone (id_user,phone)
+VALUES ('id_user', 'phone);

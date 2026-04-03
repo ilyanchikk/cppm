@@ -1,0 +1,16 @@
+Создание ДБ
+psql -U postrges подключение к суперпользователю постгрес
+chcp 1252 сменить кодовую страницу на 1251 в консоле
+createdb -U postgres test создать дб тест
+psql -U postgres -d test подключиться к ДБ тест
+\? список команд, q выход
+exit выйди издб
+dropdb -U postgres test удалить дб
+
+CREATE TABLE IF NOT EXISTS Жанры (id SERIAL PRIMARY KEY, ИМЯ VARCHAR(60) NOT NULL);
+ALTER TABLE janre RENAME name TO first_name; переименовать поле в таблице
+DROP TABLE janre; удалить таблицу
+
+
+ALTER table albums  date_manuf INTEGER;
+ALTER table albums DROP COLUMN date_manuf;
