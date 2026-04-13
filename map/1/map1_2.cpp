@@ -81,7 +81,7 @@ void get_info_time(std::vector<int>& v3, std::vector<int>& v1, std::vector<int>&
     std::vector<double> time(5);
     int start_thread = 1;
     for (int i = 0; i < 5; i++) {
-        std::cout << "поток: " << start_thread;
+        std::cout << "потоков: " << start_thread;
         time[i] = parallel_sum(v3, v1, v2, start_thread);
         start_thread = start_thread * 2;
         std::cout << time[i] << " | ";
@@ -103,7 +103,7 @@ void get_info_time(std::vector<int>& v3, std::vector<int>& v1, std::vector<int>&
     else if (mi_index == 4) {
         mi_index = 16;
     }
-    std::cout <<"Массив "<< vector_size << " элеменотов минимальное время на " << mi_index << " потоке: " << *min_el;
+    std::cout <<"Массив "<< vector_size << " эл. мин. время на " << mi_index << " потоках: " << *min_el;
     std::cout << std::endl;
     time.clear();
 }
