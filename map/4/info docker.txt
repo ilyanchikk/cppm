@@ -1,0 +1,24 @@
+docker info см инфо
+docker images  см образы
+docker pull ubuntu:16.04 скачать убунту
+docker run -ti ubuntu:16.04 запустить контейнер
+docker ps инфа по заппущенным контейнерам
+
+unanme -s посмотреть каталог?
+apt update обновить линукс
+apt install -y g++ nano установить компилятор g++ и редактор нано
+nano test.cpp создать или открыть файл тест.спп
+ls посмотреть каталог
+g++ test.cpp -o test заупустить компилятор для тест спп
+./test заупстить приложение
+exit остановить докер
+
+
+взять контейнер айди из вкладки контейнерс из десктоп версии 8b67bf7e0677fd7e057fe881fc74a16f2b8c10f2ffb495ea2b394e894ee24170
+docker start 8b67bf7e0677fd7e057fe881fc74a16f2b8c10f2ffb495ea2b394e894ee24170 запустить контейнер
+docker pause 8b67bf7e0677fd7e057fe881fc74a16f2b8c10f2ffb495ea2b394e894ee24170
+docker stop 8b67bf7e0677fd7e057fe881fc74a16f2b8c10f2ffb495ea2b394e894ee24170
+
+docker build -t my_cont1 C:\Users\Ilya\Desktop\CPPM\cppm\map\4\2\gcc
+docker run -ti my_cont1
+l
