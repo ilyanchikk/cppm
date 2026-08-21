@@ -47,6 +47,7 @@ void MainWindow::on_pB_openBD_clicked()
     if(ui->pB_openBD->isChecked()) {
         __db->connectDB(inipath);
         if(!__db->isOpen()) {
+            ui->pB_openBD->setChecked(false);
             __dbform->show();
         }
     }

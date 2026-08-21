@@ -20,6 +20,7 @@ dbform::~dbform()
 
 void dbform::debugInfo(QString text) {
     ui->label->setText(text);
+    return;
 }
 
 void dbform::on_pB_close_clicked()
