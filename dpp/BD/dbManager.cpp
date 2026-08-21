@@ -12,10 +12,27 @@ dbManager::~dbManager() {
         db.close(); //Закрыть соединение с БД если оно закрыто при уничтожении объекта
     }
 }
+
+void dbManager::disconnectDB() {
+    db.close();
+    qInfo() << "Закрыто соединение с БД";
+    emit dbDisconnected();
+}
+
+bool dbManager::isOpen() {
+    if(db.isOpen()) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 void dbManager::connectDB(const QString& iniPath) {
 
     if(!QFileInfo::exists(iniPath)) {
-        qDebug() << "Ошибка! Файл не найден";
+        qWarning("Критическая ошибка, файл конфигурации не найден, проверьте наличие файла conf.ini в папке каталога ");
+        emit dbInfo("Критическая ошибка, файл конфигурации не найден, проверьте наличие файла conf.ini в папке каталога ");
 
     }
     else {
@@ -36,10 +53,12 @@ void dbManager::connectDB(const QString& iniPath) {
      db.setPassword(password);
 
      if (!db.open()) {     // пытаемся открыть соединение по заданным параметрам
-             qDebug() << "Не удается открыть соединение с БД";
+             qWarning("Не удается открыть соединение с БД, проверьте правильность введенных данных или доступность БД");
+             emit dbInfo("Не удается открыть соединение с БД, проверьте правильность введенных данных или доступность БД");
          }
      else {
-         qDebug() << "Открыто соединение с БД";
+         qInfo() << "Открыто соединение с БД";
+         emit dbConnected();
      }
     }
 
@@ -47,7 +66,7 @@ void dbManager::connectDB(const QString& iniPath) {
 }
 void dbManager::createTables() {
     if (!db.isOpen()) {     // проверка открытия БД
-          qDebug() <<  "Соединение с БД не открыто, создание таблиц невозможно";
+          qFatal("Не удается открыть соединение с БД, повторите попытку");
       }
     else {
         QSqlQuery query(db);
@@ -72,17 +91,17 @@ void dbManager::createTables() {
             "    PRIMARY KEY (word_id, document_id)"     // составной ключ
             ")";
         if (!query.exec(createDoc)) {
-            qDebug() << "Ошибка создания таблицы documents";
+            qFatal("Ошибка создания таблицы documents");
            }
-        qDebug() << "Создана таблица documents";
+        qInfo() << "Создана таблица documents";
         if (!query.exec(createWords)) {
-            qDebug() << "Ошибка создания таблицы words";
+            qFatal("Ошибка создания таблицы words");
            }
-        qDebug() << "Создана таблица words";
+        qInfo() << "Создана таблица words";
         if (!query.exec(createWordsDoc)) {
-            qDebug() << "Ошибка создания таблицы words_documents";
+            qFatal("Ошибка создания таблицы words_documents");
            }
-        qDebug() << "Создана таблица words_documents";
+        qInfo() << "Создана таблица words_documents";
     }
 }
 
@@ -107,14 +126,14 @@ void dbManager::saveInDb(const QHash<QString, int>& frequencies, const QString& 
 
     querySaveDoc.bindValue(":path", file);
     if(!querySaveDoc.exec()) {
-        qDebug()<< "Ошибка записи в таблицу documents: " <<querySaveDoc.lastError();
+        qWarning() << "Ошибка записи в таблицу documents: " <<querySaveDoc.lastError();
     }
 
     auto w = frequencies.constBegin();
     while (w != frequencies.constEnd()) {
         querySaveWord.bindValue(":key", w.key());
         if(!querySaveWord.exec()) {
-            qDebug()<< "Ошибка записи в таблицу words: " <<querySaveWord.lastError();
+            qWarning()<< "Ошибка записи в таблицу words: " <<querySaveWord.lastError();
         }
 
         queryGetWordId.bindValue(":key", w.key());
@@ -135,13 +154,15 @@ void dbManager::saveInDb(const QHash<QString, int>& frequencies, const QString& 
 
         ++w;
     }
-   qDebug() << QString("Произведена запись в таблицы файла %1").arg(file);
+   qInfo() << QString("Произведена запись в таблицы файла %1").arg(file);
 }
 
 void dbManager::clearTables() { //очистка всех таблиц
     QSqlQuery clear(db);
     if(!clear.exec("DROP TABLE IF EXISTS words_documents, words, documents")){
-    qDebug() << clear.lastError();
+    qWarning() << clear.lastError();
     }
-    qDebug() << "Произведена очистка таблиц";
+    qInfo() << "Произведена очистка таблиц";
 }
+
+

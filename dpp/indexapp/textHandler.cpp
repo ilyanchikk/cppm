@@ -29,8 +29,8 @@ QString textHandler::readTextFile(const QString& filePath)
 
    QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {     // Text — режим, приводящий переносы строк Windows (\r\n) к \n
-       return QString();
-        qDebug()<< "Ошибка открытия файла " << filePath;
+       qWarning()<< "Ошибка открытия файла " << filePath;
+        return QString();
      }
 
     QTextStream stream(&file);

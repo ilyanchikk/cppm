@@ -7,21 +7,21 @@
 
 void searcherFiles::loadConfig(const QString& path) {
     if(!QFileInfo::exists(path)) {
-        qDebug() << "Ошибка при загрузке конфигурационного файла! Файл не найден";
+         qWarning() << "Невозможно открыть файл конфигурации для индексации файлов, будут установлены настройки по умолчанию";
     }
 
    QSettings settings(path, QSettings::IniFormat);
    settings.beginGroup("index");
-     __path     = settings.value("path","./").toStringList();                 // путь
+     __path     = settings.value("path","./catalog_files/").toStringList();                 // путь
      __extention   = settings.value("extention", "txt").toStringList();  //расширение файлов
      __min_el_search = settings.value("min_el_search", "3").toInt(); // минимальное количество букв в слове
      __max_el_search = settings.value("max_el_search", "32").toInt(); // максимальное количество букв в слове
      settings.endGroup();
-     qDebug() << "Произведено чтение конфигурационного файла";
-     qDebug() << "Путь для поиска __path записан: " << __path;
-     qDebug() << "Загруженные расширения: " <<  __extention;
-     qDebug() << "Минимальное количество букв в слове: " <<  __min_el_search;
-     qDebug() << "Максимальное количество букв в слове: " <<  __max_el_search;
+     qInfo() << "Произведено чтение конфигурационного файла";
+     qInfo() << "Путь для поиска __path записан: " << __path;
+     qInfo() << "Загруженные расширения: " <<  __extention;
+     qInfo() << "Минимальное количество букв в слове: " <<  __min_el_search;
+     qInfo() << "Максимальное количество букв в слове: " <<  __max_el_search;
 
 }
 QStringList searcherFiles::getPath() {
@@ -51,10 +51,12 @@ QStringList searcherFiles::foundFiles(QStringList path, QStringList extention) {
           }
 
           QDirIterator file(pth, masks, QDir::Files, QDirIterator::Subdirectories);
-
+          int count_file{0};
           while (file.hasNext()) {           // hasNext() — есть ли ещё файлы; next() — перейти к следующему и вернуть его путь
-              found << file.next();     // полный путь к очередному найденному файлу
+               found << file.next();     // полный путь к очередному найденному файлу
+               count_file++;
           }
+          qInfo() << QString("Произведено индексирование файлов, файлов найдено: %1").arg(count_file);
       }
 
       return found;
